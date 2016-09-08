@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+
+    <record id="res_partner_title_view_form_inherit_ecoservice_salutation" model="ir.ui.view">
+      <field name="name">res.partner.title.form.inherit.ecoservice.salutation</field>
+      <field name="model">res.partner.title</field>
+      <field name="type">form</field>
+      <field name="inherit_id" ref="base.view_partner_title_form"/>
+      <field name="arch" type="xml">
+        <field name="shortcut" position="after">
+          <field name='salutation'/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>
+
