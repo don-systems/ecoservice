@@ -27,7 +27,7 @@
     "author": "ecoservice",
     "website": "www.ecoservice.de",
     "description": """Improvment of partner :
-    * Split name in first name and last name for non company partner""",
+    * Split name in first name and last name for non company partner """,
     "category": "Generic Modules",
     "demo": ['demo/test_demo_data.xml', ],
     "data": ['res_partner_view.xml', ],
