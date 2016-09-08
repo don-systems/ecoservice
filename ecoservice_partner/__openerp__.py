@@ -21,10 +21,11 @@
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 ##############################################################################
 {   # pylint: disable-msg=W0104
-    "name": "Ecoservice Partner", # pylint: disable-msg=W0311
+    "name": "ecoservice: Partner", # pylint: disable-msg=W0311
     "version": "1.0",
     "depends": ["base"],
     "author": "ecoservice",
+    'summary': 'First and last name',
     "website": "www.ecoservice.de",
     "description": """Improvment of partner :
     * Split name in first name and last name for non company partner """,
