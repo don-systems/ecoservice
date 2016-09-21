@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_partner_form_inherit_partner_seq" model="ir.ui.view">
+      <field name="name">res.partner.form.inherit.partner.seq</field>
+      <field name="model">res.partner</field>
+      <field eval="1" name="priority"/>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="ref" position="after">
+          <field name="supplier_ref"/>
+        </field>
+      </field>
+    </record>
+
+    <!-- Customer Reference -->
+    <record id="partner_action_create_customer_ref" model="ir.actions.server">
+      <field name="name">Create Customer Reference</field>
+      <field name="model_id" ref="model_res_partner"/>
+      <field name="state">code</field>
+      <field name="code">
+        context.update({'res_partner': object}); self.button_create_ref(object, 'customer');
+      </field>
+    </record>
+
+    <record id="partner_create_customer_ref" model="ir.values">
+      <field name="name">Create Customer Reference</field>
+      <field name="model_id" ref="model_res_partner"/>
+      <field name="model">res.partner</field>
+      <field name="key">action</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.server,' + str(ref('partner_action_create_customer_ref'))"/>
+    </record>
+
+    <!-- Supplier Reference -->
+    <record id="partner_action_create_supplier_ref" model="ir.actions.server">
+      <field name="name">Create Supplier Reference</field>
+      <field name="model_id" ref="model_res_partner"/>
+      <field name="state">code</field>
+      <field name="code">
+        context.update({'res_partner': object}); self.button_create_ref(object, 'supplier');
+      </field>
+    </record>
+
+    <record id="partner_create_supplier_ref" model="ir.values">
+      <field name="name">Create Supplier Reference</field>
+      <field name="model_id" ref="model_res_partner"/>
+      <field name="model">res.partner</field>
+      <field name="key">action</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.server,' + str(ref('partner_action_create_supplier_ref'))"/>
+    </record>
+  </data>
+</openerp>

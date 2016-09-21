@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+      <!--<record model="ir.sequence.type" id="ecoservice_companycode_type">-->
+        <!--<field name="name">Partner</field>-->
+        <!--<field name="code">res.partner</field>-->
+      <!--</record>-->
+
+      <record model="ir.sequence" id="ecoservice_companycode">
+        <field name="name">Companycode</field>
+        <field name="code">res.partner</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="prefix">P</field>
+        <field name="padding" eval="5"/>
+        <field name="number_increment" eval="1"/>
+        <field name="next_number_actual" eval="1"/>
+        <field name="implementation">no_gap</field>
+      </record>
+
+      <record model="ir.sequence" id="ecoservice_companycode_supplier">
+        <field name="name">Companycode Supplier</field>
+        <field name="code">res.partner</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="prefix">S</field>
+        <field name="padding" eval="5"/>
+        <field name="number_increment" eval="1"/>
+        <field name="next_number_actual" eval="1"/>
+        <field name="implementation">no_gap</field>
+      </record>
+      
+      <record model="ir.cron" id="cron_ecoservice_companycode">
+        <field name="name">Reset Company Sequence</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number" eval="1"/>
+        <field name="interval_type">months</field>
+        <field name="numbercall" eval="-1"/>
+        <field name="doall" eval="False"/>
+        <field name="model">res.partner</field>
+        <field name="function">reset_sequencenumber</field>
+        <field name="args">()</field>
+      </record>  
+    </data>
+</openerp>
