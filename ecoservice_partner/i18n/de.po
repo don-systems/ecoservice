@@ -63,3 +63,9 @@ msgstr "TestBegrüßung"
 msgid "TestTitle"
 msgstr "TestTitel"
 
+#. module: ecoservice_partner
+#: code:addons/ecoservice_partner/res_partner.py:99
+#, python-format
+msgid "Contacts require a name."
+msgstr "Kontakte benötigen einen Namen."
+

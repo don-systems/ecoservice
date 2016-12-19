@@ -23,7 +23,8 @@
 #    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 ##############################################################################
 from openerp import fields, models, api
-
+from openerp.exceptions import UserError
+from openerp.tools.translate import _
 
 class res_partner(models.Model):
     """ Inherits the res.partner class and adds methods and attributes
@@ -92,6 +93,12 @@ class res_partner(models.Model):
                 vals['name'] = first_name
             elif last_name:
                 vals['name'] = last_name
+            elif not first_name and not last_name:
+                if (vals.get('type') == 'contact') or ('type' not in vals and self.type == 'contact'):
+                    raise UserError(_(u"Contacts require a name."))
+                else:
+                    vals['name'] = ''
+
         return super(res_partner, self).write(vals)
 
     @api.model
