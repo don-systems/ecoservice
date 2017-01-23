@@ -64,6 +64,8 @@ class res_partner(models.Model):
             self.name = self.first_name
         elif self.last_name:
             self.name = self.last_name
+        # else:
+        #     self.name = self.first_name + ' ' + self.last_name
 
     @api.one
     def write(self, vals):
@@ -73,6 +75,10 @@ class res_partner(models.Model):
         last_name = self.last_name
         company = self.is_company
         name = self.name
+        print "first_name",first_name
+        print "last_name", last_name
+        print "company", company
+        print "name", name
 
         if 'first_name' in vals:
             first_name = vals['first_name']
@@ -93,6 +99,9 @@ class res_partner(models.Model):
                 vals['name'] = first_name
             elif last_name:
                 vals['name'] = last_name
+            elif name:
+                vals['name'] = name
+                vals['first_name'] = name
             elif not first_name and not last_name:
                 if (vals.get('type') == 'contact') or ('type' not in vals and self.type == 'contact'):
                     raise UserError(_(u"Contacts require a name."))
@@ -119,6 +128,7 @@ class res_partner(models.Model):
             if last_name or first_name:
                 vals['name'] = first_name + space + last_name
         return super(res_partner, self).create(vals)
+
 
 class res_partner_title(models.Model):
     """ Inherits the res.partner.title class and adds fields
