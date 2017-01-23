@@ -75,10 +75,6 @@ class res_partner(models.Model):
         last_name = self.last_name
         company = self.is_company
         name = self.name
-        print "first_name",first_name
-        print "last_name", last_name
-        print "company", company
-        print "name", name
 
         if 'first_name' in vals:
             first_name = vals['first_name']
@@ -101,7 +97,12 @@ class res_partner(models.Model):
                 vals['name'] = last_name
             elif name:
                 vals['name'] = name
-                vals['first_name'] = name
+                split_name = name.split(' ')
+                if len(split_name) == 1:
+                    vals['first_name'] = name
+                else:
+                    vals['first_name'] = split_name[0]
+                    vals['last_name'] = split_name[-1]
             elif not first_name and not last_name:
                 if (vals.get('type') == 'contact') or ('type' not in vals and self.type == 'contact'):
                     raise UserError(_(u"Contacts require a name."))
